@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Dream Team [ PSG ]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A2145; --navy2:#132F5E; --red:#DA291C; --paper:#F2F4F9; --ink:#10213F;
+  --grass:#2F7F4F; --grass2:#378B58; --wood:#8A5A2B; --wood2:#6B4220; --gold:#E2B84A;
+  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
+  --body:'Barlow','Segoe UI',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--navy);color:var(--paper);min-height:100vh;font-size:16px;line-height:1.45}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+header{position:sticky;top:0;z-index:20;background:var(--navy);border-bottom:4px solid var(--red);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:.02em}
+.brand span{color:var(--red)}
+.wallet{font-family:var(--display);font-weight:700;font-size:1.6rem;background:var(--paper);color:var(--navy);padding:2px 16px;border-radius:999px}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 18px;background:var(--navy2)}
+nav button{background:transparent;color:var(--paper);border:2px solid transparent;border-radius:8px;padding:7px 14px;font-weight:600;font-size:.95rem}
+nav button:hover{border-color:var(--paper)}
+nav button.on{background:var(--red);border-color:var(--red)}
+main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+h2{font-family:var(--display);font-size:2rem;font-weight:800;margin-bottom:4px}
+.sub{opacity:.8;margin-bottom:18px;max-width:60ch}
+.panel{background:var(--navy2);border-radius:14px;padding:20px;margin-bottom:18px}
+.btn{background:var(--red);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-weight:600;font-size:1rem}
+.btn:hover:not(:disabled){filter:brightness(1.12)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.alt{background:var(--paper);color:var(--navy)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* Base */
+.signwrap{display:flex;justify-content:center;margin-bottom:-14px;position:relative;z-index:2}
+.sign{background:linear-gradient(var(--wood),var(--wood2));border:4px solid #4d2f14;border-radius:8px;padding:8px 26px;font-family:var(--display);font-weight:800;font-size:1.7rem;color:#FBE9CC;text-shadow:0 2px 0 #3a2210;position:relative}
+.sign::before,.sign::after{content:"";position:absolute;bottom:-26px;width:10px;height:26px;background:#4d2f14}
+.sign::before{left:22%}.sign::after{right:22%}
+.stadium{background:repeating-linear-gradient(90deg,var(--red) 0 22px,var(--paper) 22px 44px);padding:16px;border-radius:18px}
+.stands{background:var(--navy2);border-radius:12px;padding:14px}
+.pitch{background:repeating-linear-gradient(0deg,var(--grass) 0 46px,var(--grass2) 46px 92px);border:3px solid #fff;border-radius:8px;padding:20px 8px;display:flex;flex-direction:column;gap:16px;position:relative}
+.pitch::after{content:"";position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px 0 0 -45px;border:3px solid rgba(255,255,255,.55);border-radius:50%;pointer-events:none}
+.line{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
+.slot{width:96px;height:136px;border:2px dashed rgba(255,255,255,.7);border-radius:10px;display:grid;place-items:center;color:rgba(255,255,255,.8);font-size:.8rem;text-align:center;padding:6px;background:rgba(0,0,0,.12)}
+
+/* Cartes */
+.card,.card-back,.card-lock{--shape:polygon(9% 0,91% 0,100% 8%,100% 85%,50% 100%,0 85%,0 8%)}
+.card{--c1:#9FB1C7;--c2:#5E738D;--ink:#0b1830;--t1:#fff;--t2:#8EA2BC;--line:rgba(0,0,0,.3);width:124px;height:176px;position:relative;color:var(--ink);flex:none;user-select:none;filter:drop-shadow(0 5px 6px rgba(0,0,0,.5))}
+.card::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--t1),var(--t2));clip-path:var(--shape)}
+.card::after{content:"";position:absolute;inset:3px;background:radial-gradient(90% 55% at 50% 0%,rgba(255,255,255,.45),transparent 70%),repeating-linear-gradient(120deg,rgba(255,255,255,.07) 0 8px,transparent 8px 16px),linear-gradient(165deg,var(--c1),var(--c2));clip-path:var(--shape)}
+.card.bronze{--c1:#E2A56B;--c2:#8E5A2A;--ink:#2B1606;--t1:#F3C896;--t2:#7A4A1E;--line:rgba(43,22,6,.35)}
+.card.argent{--c1:#F4F6FA;--c2:#9AA9BD;--ink:#14233E;--t1:#fff;--t2:#7F8EA3;--line:rgba(20,35,62,.3)}
+.card.or{--c1:#FBE38C;--c2:#C39328;--ink:#3B2A04;--t1:#FFF4C2;--t2:#9A6F12;--line:rgba(59,42,4,.35)}
+.card.elite{--c1:#7FE3FF;--c2:#2B5FD9;--ink:#04122E;--t1:#E6FBFF;--t2:#3A6FE0;--line:rgba(4,18,46,.4)}
+.c-fx{position:absolute;inset:3px;clip-path:var(--shape);overflow:hidden;z-index:1;pointer-events:none}
+.c-sil{position:absolute;width:76%;right:-6%;top:9%;fill:currentColor;opacity:.2}
+.c-sheen{display:none;position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);animation:sheen 3.8s linear infinite}
+.card.elite .c-sheen{display:block}
+@keyframes sheen{from{transform:translateX(-60%)}to{transform:translateX(60%)}}
+.c-rating{position:absolute;left:13%;top:7%;z-index:2;display:flex;flex-direction:column;align-items:center;line-height:1}
+.c-rating b{font-family:var(--display);font-weight:800;font-size:2.2rem}
+.c-rating span{font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.08em;border-top:2px solid var(--line);padding-top:2px;margin-top:2px}
+.c-crest{position:relative;margin-top:3px;width:22px;height:22px;border-radius:50%;background:#0A2145;color:#fff;border:2px solid #DA291C;display:grid;place-items:center;font-size:.42rem;font-weight:800;font-style:normal;letter-spacing:0}
+.c-name{position:absolute;left:6%;right:6%;top:57%;text-align:center;font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;line-height:1;letter-spacing:.03em;padding-bottom:3px;border-bottom:1px solid var(--line);z-index:2;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.c-stats{position:absolute;left:11%;right:11%;top:70%;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;font-size:.5rem;font-weight:700;letter-spacing:.1em;z-index:2}
+.c-stats b{display:block;font-family:var(--display);font-size:1.15rem;line-height:1;letter-spacing:0}
+.c-gain{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);background:#0A2145;color:#fff;border:2px solid var(--t1);border-radius:99px;font-size:.62rem;font-weight:700;padding:0 9px;white-space:nowrap;z-index:5}
+.c-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#DA291C;color:#fff;font-size:.6rem;font-weight:800;padding:1px 9px;border-radius:99px;z-index:6;letter-spacing:.06em;border:2px solid #fff}
+.card .qty{position:absolute;left:-6px;top:-6px;background:var(--navy);color:#fff;border-radius:999px;font-size:.7rem;padding:0 7px;border:2px solid #fff;z-index:6}
+.c-crest img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:50%}
+.c-crest.has-logo{color:transparent;background:none;border-color:transparent}
+.c-photo{position:absolute;right:-4%;top:6%;width:80%;height:55%;object-fit:cover;object-position:50% 12%;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+.card.has-photo .c-sil{display:none}
+.c-name.l2{font-size:.92rem}.c-name.l3{font-size:.8rem}.c-name.l4{font-size:.7rem}
+.card.sm{width:96px;height:136px}
+.card.sm .c-name.l2{font-size:.76rem}.card.sm .c-name.l3{font-size:.66rem}.card.sm .c-name.l4{font-size:.58rem}
+.card.sm .c-rating b{font-size:1.7rem}.card.sm .c-rating span{font-size:.78rem}
+.card.sm .c-crest,.card.sm .c-gain{display:none}
+.card.sm .c-name{font-size:.88rem;top:57%}
+.card.sm .c-stats b{font-size:.95rem}.card.sm .c-stats{font-size:.42rem}
+.card.btn-card{cursor:pointer;transition:transform .12s}
+.card.btn-card:hover{transform:translateY(-4px)}
+.card.used{opacity:.4}
+.grid{display:flex;flex-wrap:wrap;gap:20px 14px;margin-top:14px}
+.reveal{animation:flip .7s both}
+@keyframes flip{from{transform:rotateY(90deg) scale(.7);opacity:0}to{transform:none;opacity:1}}
+.pop{animation:pop .5s both}
+@keyframes pop{0%{transform:scale(.6) rotate(-4deg);opacity:0}60%{transform:scale(1.08)}100%{transform:none;opacity:1}}
+.card.glow-or{filter:drop-shadow(0 0 12px rgba(240,200,80,.9))}
+.card.glow-elite{filter:drop-shadow(0 0 14px rgba(90,200,255,.95))}
+@media (prefers-reduced-motion:reduce){.reveal,.pop,.c-sheen{animation:none!important}}
+
+/* Packs */
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:18px}
+.offer{background:var(--navy2);border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.offer h3{font-family:var(--display);font-size:1.4rem;font-weight:800}
+.pack{width:130px;height:190px;border-radius:8px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24px 8px;color:#fff;font-family:var(--display);box-shadow:0 8px 18px rgba(0,0,0,.45);overflow:hidden;transition:transform .2s}
+.pack::before,.pack::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 4px,rgba(0,0,0,.25) 4px 8px)}
+.pack::before{top:0}.pack::after{bottom:0}
+.pk-logo{font-weight:800;font-size:2rem;letter-spacing:.06em}
+.pk-star{font-size:3rem;opacity:.9}
+.pk-name{font-weight:700;font-size:1.05rem;text-transform:uppercase;text-align:center;line-height:1}
+.pk-foot{font-size:.7rem;letter-spacing:.12em;opacity:.9}
+.pack.bronze{background:linear-gradient(160deg,#E6B07A,#8A5A2B)}
+.pack.argent{background:linear-gradient(160deg,#C9D3E3,#7F8EA3 60%,#3B4660)}
+.pack.psg{background:linear-gradient(160deg,#1c4390,#0A2145 55%,#DA291C)}
+.offer:hover .pack{transform:translateY(-4px) rotate(-2deg)}
+.chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.chips span{font-size:.72rem;background:rgba(255,255,255,.1);border-radius:99px;padding:1px 8px}
+.card-back{width:124px;height:176px;position:relative;background:var(--red);clip-path:var(--shape);cursor:pointer;transition:transform .15s}
+.card-back::before{content:"";position:absolute;inset:3px;background:repeating-linear-gradient(45deg,var(--navy2) 0 10px,var(--navy) 10px 20px);clip-path:var(--shape)}
+.card-back span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:3.2rem;font-weight:800;color:var(--red);z-index:1}
+.card-back:hover{transform:translateY(-5px)}
+.pack-img{width:130px;height:190px;object-fit:contain;transition:transform .2s;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45))}
+.offer:hover .pack-img{transform:translateY(-4px) rotate(-2deg)}
+
+/* Index : carte non découverte */
+.card-lock{width:124px;height:176px;position:relative;background:rgba(255,255,255,.25);clip-path:var(--shape);flex:none}
+.card-lock::before{content:"";position:absolute;inset:3px;background:var(--navy);clip-path:var(--shape)}
+.card-lock span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:3.2rem;font-weight:800;color:rgba(255,255,255,.35);z-index:1}
+.card-lock small{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.5);z-index:1}
+
+/* Vente rapide */
+.sellbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.sellitem{display:flex;flex-direction:column;align-items:center;gap:6px;width:136px}
+.sellitem .note{text-align:center;font-size:.8rem;margin-top:8px}
+.btn.sm{padding:6px 10px;font-size:.82rem;border-radius:8px}
+
+/* Questions */
+.q{font-size:1.25rem;font-weight:600;margin:6px 0 14px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.answers{grid-template-columns:1fr}}
+.ans{background:var(--paper);color:var(--navy);border:3px solid transparent;border-radius:10px;padding:12px;font-weight:600;text-align:left;font-size:1rem}
+.ans:hover:not(:disabled){border-color:var(--red)}
+.ans.ok{background:#2fa35c;color:#fff}
+.ans.ko{background:#c33;color:#fff}
+.meter{height:8px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;margin-bottom:12px}
+.meter i{display:block;height:100%;background:var(--red)}
+.note{opacity:.8;font-size:.92rem}
+
+/* Duel */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:12px 0;justify-items:center}
+.vs .mid{font-family:var(--display);font-size:1.4rem;text-align:center}
+.vs .win .card{filter:drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 10px var(--gold))}
+.result{font-family:var(--display);font-size:2.2rem;font-weight:800;margin-top:10px}
+#qBox,#quizBox{display:block;margin-bottom:30px}
+input[type=number],input[type=text]{background:var(--paper);color:var(--navy);border:3px solid transparent;border-radius:10px;padding:10px 12px;font-size:1.05rem;font-family:inherit;width:150px}
+input[type=text]{width:100%;max-width:320px}
+
+/* Pseudo + toast */
+.overlay{position:fixed;inset:0;background:rgba(5,15,35,.92);display:grid;place-items:center;z-index:50;padding:20px;overflow:auto}
+.overlay[hidden]{display:none}
+.overlay .box{background:var(--navy2);border-radius:16px;padding:26px;max-width:420px;width:100%}
+.gift{display:flex;justify-content:center;margin:16px 0}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--paper);color:var(--navy);font-weight:600;padding:10px 20px;border-radius:999px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">My Dream Team <span>[ PSG ]</span></div>
+  <div class="row"><span class="note" id="gpsBadge" title="Revenu automatique de tes cartes équipées"></span><div class="wallet" id="wallet">0 €</div><button class="btn alt sm" id="resetBtn">Recommencer</button></div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<div id="toast" role="status"></div>
+<div id="nameGate" class="overlay" hidden>
+  <div class="box" id="gateBox"></div>
+</div>
+
+<script>
+/* ---------- Données (effectif PSG 2026-27 mis à jour en novembre 2026) ---------- */
+// [nom, poste, ATT, MIL, DEF, note globale, époque]
+const P = [
+  // --- Actuels ---
+  ['Achraf Hakimi','DD',86,85,89,87,'Actuel'],
+  ['Marquinhos','DC',55,60,84,85,'Actuel'],
+  ['Willian Pacho','DC',50,54,91,88,'Actuel'],
+  ['Illia Zabarnyi','DC',47,65,78,76,'Actuel'],
+  ['Lucas Beraldo','MC',50,76,72,75,'Actuel'],
+  ['David Boly','DC',31,44,72,67,'Actuel'],
+  ['Axel Koukaba','DC',35,50,60,58,'Actuel'],
+  ['Lucas Hernández','DG',60,62,80,79,'Actuel'],
+  ['Lucas Digne','DG',69,65,78,75,'Actuel'],
+  ['Nuno Mendes','DG',84,78,88,85,'Actuel'],
+  ['Vitinha','MC',84,90,83,90,'Actuel'],
+  ['João Neves','MC',80,89,76,86,'Actuel'],
+  ['Fabián Ruiz','MC',75,87,79,84,'Actuel'],
+  ['Warren Zaïre-Emery','MC',78,85,81,83,'Actuel'],
+  ['Senny Mayulu','MC',84,81,70,78,'Actuel'],
+  ['Dro Fernández','MC',70,80,60,74,'Actuel'],
+  ['Adam Mouak','MC',45,55,50,54,'Actuel'],
+  ['Maghnes Akliouche','MOC',82,84,55,82,'Actuel'],
+  ['Quentin Ndjantou','MOC',76,72,45,71,'Actuel'],
+  ['Ousmane Dembélé','AD',91,73,55,91,'Actuel'],
+  ['Désiré Doué','MOC',88,85,55,86,'Actuel'],
+  ['Khvicha Kvaratskhelia','AG',90,69,50,87,'Actuel'],
+  ['Ferran Torres','BU',83,70,45,82,'Actuel'],
+  ['Mika Godts','AG',82,69,45,78,'Actuel'],
+  /* --- À REMETTRE PLUS TARD : anciens et légendes (désactivés pour l'instant) ---
+  // --- Anciens récents ---
+  ['Bradley Barcola','AG',86,76,55,84,'Ancien'],
+  ['Gonçalo Ramos','BU',85,68,45,82,'Ancien'],
+  ['Randal Kolo Muani','BU',82,68,45,79,'Ancien'],
+  ['Lee Kang-in','MOC',80,82,55,80,'Ancien'],
+  ['Ibrahim Mbaye','AD',76,70,40,70,'Ancien'],
+  // --- Légendes ---
+  ['Kylian Mbappé','BU',97,80,50,97,'Légende'],
+  ['Lionel Messi','AD',95,92,45,94,'Légende'],
+  ['Neymar Jr','AG',93,85,45,92,'Légende'],
+  ['Zlatan Ibrahimović','BU',94,80,60,92,'Légende'],
+  ['Ronaldinho','MOC',92,90,45,90,'Légende'],
+  ['Edinson Cavani','BU',91,70,55,88,'Légende'],
+  ['Marco Verratti','MC',72,93,82,89,'Légende'],
+  ['Thiago Silva','DC',55,75,94,90,'Légende'],
+  ['David Beckham','MD',80,86,62,82,'Légende'],
+  ['Pauleta','BU',88,62,40,84,'Légende'],
+  ['Raí','MOC',84,88,58,86,'Légende'],
+  ['George Weah','BU',90,68,40,86,'Légende'],
+  ['Sergio Ramos','DC',60,72,91,87,'Légende'],
+  ['Ángel Di María','AD',88,85,50,87,'Légende'],
+  ['Blaise Matuidi','MC',66,84,82,83,'Légende'],
+  ['Thiago Motta','MC',66,88,80,84,'Légende'],
+  ['Jay-Jay Okocha','MOC',85,86,48,85,'Légende'],
+  ['Javier Pastore','MOC',84,86,50,84,'Légende'],
+  ['Dani Alves','DD',80,85,78,85,'Légende'],
+  ['David Ginola','AG',86,78,45,83,'Légende'],
+  ['Ezequiel Lavezzi','AG',82,76,50,81,'Légende'],
+  ['Maxwell','DG',70,78,80,80,'Légende'],
+  ['Lucas Moura','AG',82,74,50,80,'Légende'],
+  ['Presnel Kimpembe','DC',50,70,86,82,'Légende']
+  --- fin du bloc désactivé --- */
+].map((a,i)=>({id:i,name:a[0],pos:a[1],att:a[2],mil:a[3],def:a[4],ovr:a[5],era:a[6],
+  // Élite (90+), Or (78-89), Argent (70-77), Bronze (moins de 70)
+  rar:a[5]>=90?'elite':a[5]>=78?'or':a[5]>=70?'argent':'bronze'}));
+// Raretés pour l'instant : Bronze, Argent, Or, Élite
+const RAR_LABEL={bronze:'Bronze',argent:'Argent',or:'Or',elite:'Élite'};
+// Seules les cartes de l'effectif actuel sont obtenables pour l'instant (packs, cadeau, rivaux)
+const OBTAINABLE=P.filter(p=>p.era==='Actuel');
+
+/* ============================================================
+   PHOTOS ET LOGO : À REMPLIR ICI
+   Entre les guillemets, colle soit :
+     - un chemin vers un fichier à côté du HTML  : 'photos/mbappe.png'
+     - soit un lien d'image                      : 'https://.../mbappe.png'
+   Laisse '' (vide) pour garder la silhouette par défaut.
+   ============================================================ */
+const LOGO = '';   // logo du club, ex : 'logo-psg.png'
+
+const PHOTOS = {
+  // --- Actuels ---
+  'Matvey Safonov': '',
+  'Lucas Chevalier': '',
+  'Alessandro Longoni': '',
+  'Achraf Hakimi': '',
+  'Marquinhos': '',
+  'Willian Pacho': '',
+  'Illia Zabarnyi': '',
+  'Lucas Beraldo': '',
+  'David Boly': '',
+  'Axel Koukaba': '',
+  'Lucas Hernández': '',
+  'Lucas Digne': '',
+  'Nuno Mendes': '',
+  'Vitinha': '',
+  'João Neves': '',
+  'Fabián Ruiz': '',
+  'Warren Zaïre-Emery': '',
+  'Senny Mayulu': '',
+  'Dro Fernández': '',
+  'Adam Mouak': '',
+  'Maghnes Akliouche': '',
+  'Quentin Ndjantou': '',
+  'Ousmane Dembélé': '',
+  'Désiré Doué': '',
+  'Khvicha Kvaratskhelia': '',
+  'Ferran Torres': '',
+  'Mika Godts': '',
+  // --- Anciens récents ---
+  'Gianluigi Donnarumma': '',
+  'Bradley Barcola': '',
+  'Gonçalo Ramos': '',
+  'Randal Kolo Muani': '',
+  'Lee Kang-in': '',
+  'Ibrahim Mbaye': '',
+  // --- Légendes ---
+  'Kylian Mbappé': '',
+  'Lionel Messi': '',
+  'Neymar Jr': '',
+  'Zlatan Ibrahimović': '',
+  'Ronaldinho': '',
+  'Edinson Cavani': '',
+  'Marco Verratti': '',
+  'Thiago Silva': '',
+  'David Beckham': '',
+  'Pauleta': '',
+  'Raí': '',
+  'George Weah': '',
+  'Sergio Ramos': '',
+  'Ángel Di María': '',
+  'Blaise Matuidi': '',
+  'Thiago Motta': '',
+  'Jay-Jay Okocha': '',
+  'Javier Pastore': '',
+  'Gianluigi Buffon': '',
+  'Keylor Navas': '',
+  'Dani Alves': '',
+  'David Ginola': '',
+  'Ezequiel Lavezzi': '',
+  'Maxwell': '',
+  'Lucas Moura': '',
+  'Presnel Kimpembe': ''
+};
+
+/* ============================================================
+   ÉQUILIBRAGE : durée du jeu sur plusieurs jours
+   ============================================================ */
+const M=1000000; // 1 million : les prix du jeu sont écrits en millions (ex : 40*M = 40 M €)
+const GPS_BASE=0.0055*M;      // revenu automatique : plus c'est bas, plus c'est long (avant : 0.05)
+const GPS_CURVE=1.07;       // écart de revenu entre une bonne et une mauvaise carte (avant : 1.1)
+const OFFLINE_CAP=8*3600;   // gains hors-ligne plafonnés à 8 h (avant : 30 min)
+const OFFLINE_RATE=0.5;     // hors-ligne : 50 % du revenu (le jeu actif reste plus rentable)
+const OFFLINE_MIN=60;       // au-delà de 60 s d'absence, on considère que le joueur était hors-ligne
+const gps=p=>Math.round(GPS_BASE*Math.pow(GPS_CURVE,p.ovr-55));
+// Affichage court : 1 250 000 -> 1,25 M ; 340 000 -> 340 k ; 2 500 000 000 -> 2,5 Md
+function short(n){
+  const a=Math.abs(n);
+  const f=(v,u)=>v.toLocaleString('fr-FR',{maximumFractionDigits:2})+' '+u;
+  if(a>=1e9)return f(n/1e9,'Md');
+  if(a>=1e6)return f(n/1e6,'M');
+  if(a>=1e4)return f(n/1e3,'k');
+  return n.toLocaleString('fr-FR',{maximumFractionDigits:2});
+}
+const fmt1=short;
+const totalGps=()=>S.team.reduce((a,id)=>a+(id==null?0:gps(P[id])),0); // seules les cartes placées sur le terrain rapportent
+
+/* Postes : le terrain a 10 places fixes en 4-3-3 (3 attaquants, 3 milieux, 4 défenseurs), sans gardien */
+const GROUP={DD:'DEF',DG:'DEF',DC:'DEF',MC:'MIL',MD:'MIL',MOC:'MIL',AD:'ATT',AG:'ATT',BU:'ATT'};
+const SLOTS=['ATT','ATT','ATT','MIL','MIL','MIL','DEF','DEF','DEF','DEF']; // 4-3-3, pas de gardien
+const SLOT_LABEL={ATT:'Attaquant',MIL:'Milieu',DEF:'Défenseur'};
+const GROUP_LABEL={ATT:'un attaquant',MIL:'un milieu',DEF:'un défenseur'};
+
+const q=(question,good,...bad)=>({q:question,good,bad});
+const Q=[
+  q('En quelle année le PSG a-t-il été fondé ?','1970','1960','1982','1995'),
+  q('Comment s\'appelle le stade du PSG ?','Parc des Princes','Stade de France','Vélodrome','Groupama Stadium'),
+  q('Quel club le PSG a-t-il battu 5-0 en finale de la Ligue des champions 2025 ?','Inter Milan','Arsenal','Bayern Munich','Real Madrid'),
+  q('Quel joueur est le meilleur buteur de l\'histoire du PSG ?','Kylian Mbappé','Edinson Cavani','Zlatan Ibrahimović','Pauleta'),
+  q('Quel entraîneur dirige le PSG depuis 2023 ?','Luis Enrique','Christophe Galtier','Mauricio Pochettino','Thomas Tuchel'),
+  q('Quelles sont les couleurs du PSG ?','Bleu, rouge et blanc','Rouge et noir','Vert et blanc','Bleu et jaune'),
+  q('De quelle nationalité est Zlatan Ibrahimović ?','Suédoise','Danoise','Croate','Norvégienne'),
+  q('Quel club le PSG a-t-il battu pour remporter la Coupe des Coupes en 1996 ?','Rapid Vienne','Barcelone','Juventus','Ajax'),
+  q('De quel club Lionel Messi est-il arrivé au PSG en 2021 ?','FC Barcelone','Manchester City','Inter Miami','Real Madrid'),
+  q('Quelle est la nationalité de Marquinhos, capitaine du PSG ?','Brésilienne','Portugaise','Argentine','Espagnole'),
+  q('Quel joueur du PSG a remporté le Ballon d\'Or en 2025 ?','Ousmane Dembélé','Vitinha','Achraf Hakimi','Désiré Doué'),
+  q('Quel animal est la mascotte du PSG, Germain ?','Un lynx','Un lion','Un aigle','Un loup'),
+  q('Quel numéro de maillot a porté Ronaldinho au PSG ?','10','7','11','9'),
+  q('De quelle nationalité est Vitinha ?','Portugaise','Brésilienne','Espagnole','Italienne'),
+  q('Quel club a fusionné avec le Stade Saint-Germain pour créer le PSG ?','Paris FC','Racing Club de Paris','Red Star','Paris Saint-Denis'),
+  q('Quel milieu italien a longtemps porté le maillot du PSG de 2012 à 2023 ?','Marco Verratti','Jorginho','Nicolò Barella','Sandro Tonali'),
+  q('Quel joueur a marqué 49 buts en une saison avec le PSG (2016-2017) ?','Edinson Cavani','Zlatan Ibrahimović','Neymar','Kylian Mbappé'),
+  q('Quel entraîneur italien a mené le PSG au titre de champion en 2012-2013 ?','Carlo Ancelotti','Antonio Conte','Roberto Mancini','Massimiliano Allegri'),
+  q('Quel gardien italien a rejoint le PSG en 2021 ?','Gianluigi Donnarumma','Gianluigi Buffon','Salvatore Sirigu','Alex Meret'),
+  q('Quel joueur anglais a joué au PSG en 2013 pour son dernier club ?','David Beckham','Steven Gerrard','Frank Lampard','Wayne Rooney'),
+  q('Quel joueur a quitté le PSG pour le Real Madrid en 2024 ?','Kylian Mbappé','Presnel Kimpembe','Marco Verratti','Randal Kolo Muani'),
+  q('En quelle année le PSG a-t-il été champion de France pour la première fois ?','1986','1974','1994','2000'),
+  q('Quel joueur est arrivé au PSG en 2017 pour 222 millions d\'euros ?','Neymar Jr','Kylian Mbappé','Ángel Di María','Javier Pastore'),
+  q('Quel pays Achraf Hakimi représente-t-il en sélection ?','Le Maroc','L\'Algérie','La Tunisie','L\'Espagne'),
+  q('Quel club a battu le PSG en finale de la Ligue des champions 2020 ?','Bayern Munich','Chelsea','Liverpool','Real Madrid'),
+  q('Dans quel arrondissement de Paris se trouve le Parc des Princes ?','Le 16e','Le 8e','Le 12e','Le 20e'),
+  q('Quel surnom est donné à l\'ancien gardien Gianluigi Donnarumma ?','Gigio','Gigi','Dodo','Gianlu'),
+  q('Quel défenseur central français formé à Paris est un enfant du club ?','Presnel Kimpembe','Raphaël Varane','Dayot Upamecano','Wesley Fofana'),
+  q('De quel club Ángel Di María est-il arrivé au PSG en 2015 ?','Manchester United','Real Madrid','Benfica','Juventus'),
+  q('De quelle nationalité est Edinson Cavani ?','Uruguayenne','Colombienne','Argentine','Chilienne'),
+  q('Quel club Zlatan Ibrahimović a-t-il quitté pour rejoindre le PSG en 2012 ?','AC Milan','Inter Milan','FC Barcelone','Juventus'),
+  q('Quel défenseur brésilien a été capitaine du PSG avant Marquinhos ?','Thiago Silva','Dani Alves','Maxwell','Neymar'),
+  q('De quel club Vitinha est-il arrivé au PSG en 2022 ?','FC Porto','Benfica','Sporting CP','Braga'),
+  q('De quel club João Neves est-il arrivé au PSG en 2024 ?','Benfica','FC Porto','Sporting CP','Braga'),
+  q('De quel club Désiré Doué est-il arrivé au PSG en 2024 ?','Stade Rennais','Olympique Lyonnais','AS Monaco','LOSC Lille'),
+  q('De quel club Bradley Barcola est-il arrivé au PSG en 2023 ?','Olympique Lyonnais','Stade Rennais','AS Monaco','OGC Nice'),
+  q('De quel club Ousmane Dembélé est-il arrivé au PSG en 2023 ?','FC Barcelone','Borussia Dortmund','Stade Rennais','Atlético de Madrid'),
+  q('De quel club Achraf Hakimi est-il arrivé au PSG en 2021 ?','Inter Milan','Real Madrid','Borussia Dortmund','AS Monaco'),
+  q('Dans quelle ville a eu lieu la finale de la Ligue des champions 2025 ?','Munich','Londres','Istanbul','Madrid'),
+  q('Quel joueur a ouvert le score en finale de la Ligue des champions 2025 ?','Achraf Hakimi','Ousmane Dembélé','Désiré Doué','Khvicha Kvaratskhelia'),
+  q('Quel jeune formé au club a marqué le dernier but de la finale 2025 ?','Senny Mayulu','Warren Zaïre-Emery','Bradley Barcola','Ibrahim Mbaye'),
+  q('De quelle nationalité est l\'entraîneur Luis Enrique ?','Espagnole','Portugaise','Argentine','Italienne'),
+  q('Quel surnom est donné aux joueurs du PSG ?','Les Rouge-et-Bleu','Les Canaris','Les Gones','Les Merengues'),
+  q('Quel slogan est associé au PSG ?','Ici c\'est Paris','Forza Paris','Allez Parigi','Vamos Paris'),
+  q('De quelle nationalité est Ronaldinho ?','Brésilienne','Portugaise','Argentine','Mexicaine'),
+
+  /* ---- 25 nouvelles questions : le PSG d'aujourd'hui (saison 2026-27) ---- */
+  q('Quel club le PSG a-t-il battu aux tirs au but en finale de la Ligue des champions 2026 ?','Arsenal','Bayern Munich','Real Madrid','Manchester City'),
+  q('Combien de Ligues des champions consécutives le PSG a-t-il gagnées en 2025 et 2026 ?','2','1','3','4'),
+  q('Quelle compétition a rendu le PSG champion du monde pour la première fois ?','La Coupe intercontinentale','La Coupe du monde des clubs','La Supercoupe de l\'UEFA','Le Trophée des Champions'),
+  q('Quel numéro porte David Boly, le jeune défenseur du PSG ?','42','24','51','47'),
+  q('Quel numéro porte Senny Mayulu au PSG ?','24','27','33','17'),
+  q('Quel numéro porte João Neves au PSG ?','87','17','33','8'),
+  q('Quel numéro porte Willian Pacho au PSG ?','51','5','6','25'),
+  q('Quel numéro porte Quentin Ndjantou au PSG ?','47','49','42','24'),
+  q('Quel joueur porte le numéro 10 du PSG en 2026-27 ?','Ousmane Dembélé','Désiré Doué','Vitinha','Kvaratskhelia'),
+  q('Quel numéro porte Khvicha Kvaratskhelia au PSG ?','7','9','14','11'),
+  q('Quel numéro porte Désiré Doué au PSG ?','14','10','22','11'),
+  q('Quel numéro porte Maghnes Akliouche au PSG ?','11','9','22','10'),
+  q('De quel club Maghnes Akliouche est-il arrivé au PSG à l\'été 2026 ?','AS Monaco','Olympique de Marseille','LOSC Lille','Stade Rennais'),
+  q('De quel club Mika Godts est-il arrivé au PSG à l\'été 2026 ?','Ajax Amsterdam','Club Bruges','FC Barcelone','Feyenoord'),
+  q('De quel club Ferran Torres est-il arrivé au PSG à l\'été 2026 ?','FC Barcelone','Manchester City','FC Valence','Atlético de Madrid'),
+  q('De quel club Lucas Digne est-il arrivé au PSG à l\'été 2026 ?','Aston Villa','Everton','Olympique de Marseille','AS Monaco'),
+  q('Dans quel club Bradley Barcola a-t-il été transféré à l\'été 2026 ?','Liverpool','Arsenal','FC Barcelone','Chelsea'),
+  q('De quelle nationalité est le défenseur Illia Zabarnyi ?','Ukrainienne','Polonaise','Croate','Tchèque'),
+  q('De quelle nationalité est Mika Godts ?','Belge','Néerlandaise','Allemande','Française'),
+  q('Quel club a vendu le jeune milieu Dro Fernández au PSG en janvier 2026 ?','FC Barcelone','Real Madrid','FC Valence','Villarreal'),
+  q('Dans quel club Ibrahim Mbaye a-t-il été transféré à l\'été 2026 ?','Aston Villa','Liverpool','Newcastle','Leeds')
+];
+
+/* ---------- Sauvegarde ---------- */
+const SAVE='mdt_psg_v2'; // v2 : nouveau catalogue de joueurs (anciennes sauvegardes ignorées)
+let S=load();
+function load(){
+  try{const r=JSON.parse(localStorage.getItem(SAVE));if(r&&Array.isArray(r.team)){
+    // Retire des places les joueurs mal positionnés (ils restent dans la collection)
+    // (et les doublons : un même joueur ne peut être placé qu'une fois)
+    // Passage à l'échelle du million : l'argent d'une ancienne sauvegarde est converti, une seule fois
+    if(!r.mil){r.money=Math.round((r.money||0)*M);r.acc=0;r.mil=1;}
+    // Migration v3 : les gardiens sont supprimés et les numéros de cartes ont changé -> on replace tout par le nom
+    if(!r.v){
+      const OLD=['Matvey Safonov','Lucas Chevalier','Alessandro Longoni','Achraf Hakimi','Marquinhos','Willian Pacho','Illia Zabarnyi','Lucas Beraldo','David Boly','Axel Koukaba','Lucas Hernández','Lucas Digne','Nuno Mendes','Vitinha','João Neves','Fabián Ruiz','Warren Zaïre-Emery','Senny Mayulu','Dro Fernández','Adam Mouak','Maghnes Akliouche','Quentin Ndjantou','Ousmane Dembélé','Désiré Doué','Khvicha Kvaratskhelia','Ferran Torres','Mika Godts'];
+      const REFUND={'Matvey Safonov':30,'Lucas Chevalier':12.5,'Alessandro Longoni':7.5}; // en M € : les gardiens sont remboursés
+      const nid=n=>P.findIndex(p=>p.name===n);
+      const no={};
+      Object.keys(r.owned||{}).forEach(k=>{
+        const n=OLD[k],qty=r.owned[k];
+        if(!n||!(qty>0))return;
+        const i=nid(n);
+        if(i>=0)no[i]=(no[i]||0)+qty;
+        else r.money=(r.money||0)+Math.round((REFUND[n]||0)*M*qty);
+      });
+      r.owned=no;
+      r.team=r.team.map(id=>{const i=id==null?-1:nid(OLD[id]);return i>=0?i:null;});
+      r.v=3;
+    }
+    // Retire de la collection les cartes qui n'existent plus (anciens joueurs et légendes désactivés)
+    r.owned=r.owned||{};
+    Object.keys(r.owned).forEach(k=>{if(!P[k])delete r.owned[k];});
+    // Ancienne formation (6 places) -> 4-3-3 : chaque joueur est replacé à son poste
+    const seen=new Set();
+    const nt=SLOTS.map(()=>null);
+    r.team.forEach(id=>{
+      if(id==null||!P[id]||seen.has(id))return;
+      const i=SLOTS.findIndex((g,k)=>g===GROUP[P[id].pos]&&nt[k]===null);
+      if(i>=0){nt[i]=id;seen.add(id);}
+    });
+    r.team=nt;
+    return r;}}catch(e){}
+  return {name:'',money:0,owned:{},team:SLOTS.map(()=>null),upg:0,gift:false,mil:1,v:3};
+}
+let RESET=false; // bloque toute sauvegarde pendant la remise à zéro
+function save(){if(RESET)return;try{localStorage.setItem(SAVE,JSON.stringify(S));}catch(e){}}
+function resetGame(){
+  if(!confirm('Recommencer le jeu ? Ton argent, tes cartes et ta base seront définitivement effacés.'))return;
+  RESET=true;
+  try{localStorage.removeItem(SAVE);}catch(e){}
+  location.reload();
+}
+
+/* ---------- Utilitaires ---------- */
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const eur=n=>short(n)+' €';
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
+function setMoney(d){S.money+=d;save();renderHeader();}
+function renderHeader(){
+  $('#wallet').textContent=eur(S.money);
+  const g=$('#gpsBadge');if(g)g.textContent='+'+fmt1(totalGps())+' €/s';
+  document.querySelectorAll('[data-price]').forEach(b=>{b.disabled=S.money<+b.dataset.price;});
+}
+/* Revenus automatiques : crédités aussi hors-ligne (plafond OFFLINE_CAP, à OFFLINE_RATE du revenu) */
+function tick(){
+  const now=Date.now();
+  let dt=(now-(S.last||now))/1000;
+  S.last=now;
+  if(!(dt>0))return;
+  const offline=dt>OFFLINE_MIN;
+  dt=Math.min(dt,OFFLINE_CAP);
+  const gain=totalGps()*dt*(offline?OFFLINE_RATE:1);
+  S.acc=(S.acc||0)+gain;
+  const whole=Math.floor(S.acc);
+  if(whole>0){S.acc-=whole;S.money+=whole;}
+  save();renderHeader();
+  if(offline&&gain>=1)toast('Pendant ton absence : +'+eur(gain));
+}
+setInterval(tick,1000);
+
+/* ---------- Affichage des photos et du logo (réglés plus haut dans PHOTOS et LOGO) ---------- */
+function photoHTML(p){
+  const u=PHOTOS[p.name];
+  if(!u)return '';
+  return `<img class="c-photo" src="${esc(u)}" alt="" onload="this.closest('.card').classList.add('has-photo')" onerror="this.remove()">`;
+}
+function logoHTML(){
+  if(!LOGO)return '';
+  return `<img src="${esc(LOGO)}" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()">`;
+}
+
+// Nom affiché sur la carte : nom de famille (avec initiale si deux joueurs le partagent)
+const SHORT=(()=>{
+  const last=n=>{const w=n.split(' ').filter(w=>w.toLowerCase()!=='jr');return w[w.length-1];};
+  const cnt={};P.forEach(p=>{const l=last(p.name);cnt[l]=(cnt[l]||0)+1;});
+  return P.map(p=>{const l=last(p.name);return cnt[l]>1?p.name[0]+'. '+l:l;});
+})();
+function cardHTML(p,{sm=false,qty=0,cls='',attrs='',badge=''}={}){
+  return `<div class="card ${p.rar} ${sm?'sm':''} ${cls}" ${attrs} title="${esc(p.name)} — ${RAR_LABEL[p.rar]} · ${p.era}">
+    ${badge?`<span class="c-badge">${esc(badge)}</span>`:''}
+    <div class="c-fx">${photoHTML(p)}<svg class="c-sil" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="32" r="18"/><path d="M8 100c0-28 18-44 42-44s42 16 42 44z"/></svg><i class="c-sheen"></i></div>
+    <div class="c-rating"><b>${p.ovr}</b><span>${p.pos}</span><i class="c-crest">PSG${logoHTML()}</i></div>
+    <div class="c-name l${SHORT[p.id].length<=7?1:SHORT[p.id].length<=9?2:SHORT[p.id].length<=11?3:4}">${esc(SHORT[p.id])}</div>
+    <div class="c-stats"><span><b>${p.att}</b>ATT</span><span><b>${p.mil}</b>MIL</span><span><b>${p.def}</b>DEF</span></div>
+    <div class="c-gain">+${fmt1(gps(p))} €/s</div>
+    ${qty>1?`<span class="qty">x${qty}</span>`:''}
+  </div>`;
+}
+
+/* ---------- Navigation ---------- */
+const TABS=[['base','Ma base'],['index','Index'],['gains','Gagnez Des Pièces'],['ameliorations','Améliorations'],['boutique','Boutique'],['vente','Vente rapide'],['duel','Duel Fatal']];
+let tab='base';
+function renderNav(){
+  $('#nav').innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tab?'on':''}">${l}</button>`).join('');
+  $('#nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render();});
+}
+function render(){
+  renderHeader();renderNav();
+  ({base:renderBase,index:renderIndex,gains:renderGains,ameliorations:renderUpgrades,boutique:renderShop,vente:renderSell,duel:renderDuel})[tab]();
+}
+
+/* ---------- Équipe ---------- */
+const usedCount=id=>S.team.filter(x=>x===id).length;
+function addToTeam(id){
+  if(usedCount(id)>0){toast(P[id].name+' est déjà sur ton terrain.');return;}
+  const g=GROUP[P[id].pos];
+  const i=SLOTS.findIndex((s,k)=>s===g&&S.team[k]===null);
+  if(i<0){toast('Plus de place pour '+GROUP_LABEL[g]+'. Retire une carte d\'abord.');return;}
+  S.team[i]=id;save();render();
+}
+function removeFromTeam(i){S.team[i]=null;save();render();}
+
+/* ---------- Pack de départ (gratuit : 8 cartes tirées au hasard, très grosse chance de Bronze) ---------- */
+const STARTER_N=8;
+const STARTER_W={bronze:90,argent:9,or:1}; // chances en % par carte (pas d'Élite dans le cadeau)
+function giveStarter(){
+  const cards=Array.from({length:STARTER_N},()=>drawCard(STARTER_W));
+  cards.forEach(p=>{
+    S.owned[p.id]=(S.owned[p.id]||0)+1;
+    // Placée sur le terrain si une place libre existe à son poste et si elle n'y est pas déjà
+    const i=usedCount(p.id)>0?-1:SLOTS.findIndex((sl,k)=>sl===GROUP[p.pos]&&S.team[k]===null);
+    if(i>=0)S.team[i]=p.id;
+  });
+  S.gift=true;save();
+  return cards;
+}
+
+/* ---------- Ma base ---------- */
+function renderBase(){
+  const slot=i=>S.team[i]===null
+    ? `<div class="slot">${SLOT_LABEL[SLOTS[i]]}<br>libre</div>`
+    : cardHTML(P[S.team[i]],{sm:true,cls:'btn-card',attrs:`data-slot="${i}" tabindex="0" role="button"`});
+  const ids=Object.keys(S.owned).map(Number).filter(id=>S.owned[id]>0).sort((a,b)=>P[b].ovr-P[a].ovr);
+  $('#main').innerHTML=`
+    <h2>Ma base</h2>
+    <p class="sub">Ton mini-stade. Clique une carte de ta collection pour la placer à son poste, clique une carte du terrain pour la retirer. Formation : 4-3-3 (3 attaquants, 3 milieux, 4 défenseurs).</p>
+    <div class="signwrap"><div class="sign">Base de ${esc(S.name||'Joueur')}</div></div>
+    <div class="stadium"><div class="stands"><div class="pitch">
+      <div class="line">${slot(0)}${slot(1)}${slot(2)}</div>
+      <div class="line">${slot(3)}${slot(4)}${slot(5)}</div>
+      <div class="line">${slot(6)}${slot(7)}${slot(8)}${slot(9)}</div>
+    </div></div></div>
+    <div class="panel" style="margin-top:18px">
+      <h2 style="font-size:1.5rem">Ma collection (${ids.reduce((a,id)=>a+S.owned[id],0)} cartes)</h2>
+      <p class="note">Seules les cartes <b>placées sur ton terrain</b> rapportent des € en continu, selon leur note. Revenu actuel : <b>+${fmt1(totalGps())} €/s</b>. Hors-ligne, tu gagnes ${Math.round(OFFLINE_RATE*100)} % de ce revenu, pendant ${OFFLINE_CAP/3600} h maximum.</p>
+      ${ids.length?`<div class="grid">${ids.map(id=>cardHTML(P[id],{qty:S.owned[id],cls:'btn-card'+(usedCount(id)>0?' used':''),attrs:`data-id="${id}" tabindex="0" role="button"`})).join('')}</div>`
+      :`<p class="note">Aucune carte pour l'instant. Gagne des € avec les questions et le quiz, puis ouvre un pack dans la boutique.</p>`}
+    </div>`;
+  document.querySelectorAll('[data-slot]').forEach(c=>{c.onclick=()=>removeFromTeam(+c.dataset.slot);c.onkeydown=e=>{if(e.key==='Enter')c.click();};});
+  document.querySelectorAll('[data-id]').forEach(c=>{c.onclick=()=>addToTeam(+c.dataset.id);c.onkeydown=e=>{if(e.key==='Enter')c.click();};});
+}
+
+/* ---------- Améliorations ---------- */
+const UPG=[{cost:200*M,mult:2},{cost:600*M,mult:3}];
+const lvl=()=>S.upg||0;
+const mult=()=>lvl()===0?1:UPG[lvl()-1].mult;
+const QBASE=0.3*M; // gain d'une bonne réponse aux questions de base (avant amélioration) (avant : 1 M)
+const qGain=()=>mult()*QBASE;
+function renderUpgrades(){
+  const l=lvl();
+  $('#main').innerHTML=`<h2>Améliorations</h2>
+    <p class="sub">Améliore tes gains. Gain actuel d'une bonne réponse aux questions de base : <b>${eur(qGain())}</b>.</p>
+    ${UPG.map((u,i)=>{
+      const done=l>i,next=l===i;
+      return `<div class="panel">
+        <h2 style="font-size:1.5rem">Questions de base x${u.mult}</h2>
+        <p class="note" style="margin-bottom:12px">Chaque bonne réponse aux questions de base rapporte ${eur(u.mult*QBASE)} au lieu de ${eur(QBASE)}.</p>
+        ${done?'<b>Amélioration acquise</b>'
+          :`<button class="btn" data-up="${i}" ${(!next||S.money<u.cost)?'disabled':''}>Acheter · ${eur(u.cost)}</button>
+            ${!next?'<span class="note"> Disponible après l\'amélioration précédente.</span>':S.money<u.cost?`<span class="note"> Il te manque ${eur(u.cost-S.money)}.</span>`:''}`}
+      </div>`;}).join('')}`;
+  document.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.up,u=UPG[i];
+    if(lvl()!==i||S.money<u.cost)return;
+    S.money-=u.cost;S.upg=i+1;save();
+    toast('Gains x'+u.mult+' débloqués !');
+    render();
+  });
+}
+
+/* ---------- Gagnez Des Pièces ---------- */
+function renderGains(){
+  $('#main').innerHTML=`<div id="qBox"></div><div id="quizBox"></div>`;
+  renderQuestions();
+  renderQuiz();
+}
+
+/* ---------- Questions uniques ---------- */
+let single=null;
+function newSingle(){const x=rand(Q);single={x,opts:shuffle([x.good,...x.bad]),done:false,pick:null};}
+function renderQuestions(){
+  if(!single)newSingle();
+  const s=single;
+  $('#qBox').innerHTML=`
+    <h2>Questions de base</h2>
+    <p class="sub">Une question, une bonne réponse, +${eur(qGain())}. C'est gratuit : parfait pour démarrer.</p>
+    <div class="panel">
+      <p class="q">${esc(s.x.q)}</p>
+      <div class="answers">${s.opts.map((o,i)=>`<button class="ans ${s.done?(o===s.x.good?'ok':(i===s.pick?'ko':'')):''}" data-i="${i}" ${s.done?'disabled':''}>${esc(o)}</button>`).join('')}</div>
+      ${s.done?`<div class="row" style="margin-top:16px"><span>${s.opts[s.pick]===s.x.good?`Bonne réponse, +${eur(qGain())}`:'Raté. La bonne réponse est en vert.'}</span><button class="btn" id="nextQ">Question suivante</button></div>`:''}
+    </div>`;
+  document.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{
+    s.pick=+b.dataset.i;s.done=true;
+    if(s.opts[s.pick]===s.x.good)setMoney(qGain());
+    renderQuestions();
+  });
+  const n=$('#nextQ');if(n)n.onclick=()=>{newSingle();renderQuestions();};
+}
+
+/* ---------- Quiz Easy ---------- */
+const QUIZ_COST=10*M,QUIZ_GAIN=16*M,QUIZ_LEN=5,QUIZ_PASS=4; // avant : coût 25 M, gain 40 M
+let quiz=null;
+function renderQuiz(){
+  const m=$('#quizBox');
+  if(!quiz){
+    m.innerHTML=`<h2>Quiz Easy</h2>
+      <p class="sub">Paye ${eur(QUIZ_COST)} pour entrer. Réponds juste à ${QUIZ_PASS} questions sur ${QUIZ_LEN} et tu repars avec ${eur(QUIZ_GAIN)}.</p>
+      <div class="panel"><button class="btn" id="goQuiz" ${S.money<QUIZ_COST?'disabled':''}>Payer ${eur(QUIZ_COST)} et commencer</button>
+      ${S.money<QUIZ_COST?`<p class="note" style="margin-top:10px">Il te manque ${eur(QUIZ_COST-S.money)}. Réponds à des questions uniques pour les gagner.</p>`:''}</div>`;
+    const g=$('#goQuiz');if(g)g.onclick=()=>{
+      if(S.money<QUIZ_COST)return;
+      setMoney(-QUIZ_COST);
+      quiz={list:shuffle(Q).slice(0,QUIZ_LEN).map(x=>({x,opts:shuffle([x.good,...x.bad])})),i:0,score:0,pick:null,end:false};
+      renderQuiz();
+    };
+    return;
+  }
+  if(quiz.end){
+    const ok=quiz.score>=QUIZ_PASS;
+    m.innerHTML=`<h2>Quiz Easy</h2><div class="panel">
+      <p class="result">${quiz.score} / ${QUIZ_LEN}</p>
+      <p style="margin:8px 0 16px">${ok?`Réussi ! Tu gagnes ${eur(QUIZ_GAIN)}.`:`Il fallait ${QUIZ_PASS} bonnes réponses. Les ${eur(QUIZ_COST)} d'entrée sont perdus.`}</p>
+      <button class="btn" id="again">Retour</button></div>`;
+    $('#again').onclick=()=>{quiz=null;renderQuiz();};
+    return;
+  }
+  const cur=quiz.list[quiz.i];
+  m.innerHTML=`<h2>Quiz Easy</h2>
+    <div class="panel">
+      <div class="meter"><i style="width:${(quiz.i/QUIZ_LEN)*100}%"></i></div>
+      <p class="note">Question ${quiz.i+1} sur ${QUIZ_LEN} · ${quiz.score} bonne(s) réponse(s)</p>
+      <p class="q">${esc(cur.x.q)}</p>
+      <div class="answers">${cur.opts.map((o,k)=>`<button class="ans ${quiz.pick!==null?(o===cur.x.good?'ok':(k===quiz.pick?'ko':'')):''}" data-i="${k}" ${quiz.pick!==null?'disabled':''}>${esc(o)}</button>`).join('')}</div>
+      ${quiz.pick!==null?`<div style="margin-top:16px"><button class="btn" id="nq">${quiz.i===QUIZ_LEN-1?'Voir le résultat':'Suivante'}</button></div>`:''}
+    </div>`;
+  document.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{
+    quiz.pick=+b.dataset.i;
+    if(cur.opts[quiz.pick]===cur.x.good)quiz.score++;
+    renderQuiz();
+  });
+  const n=$('#nq');if(n)n.onclick=()=>{
+    if(quiz.i===QUIZ_LEN-1){quiz.end=true;if(quiz.score>=QUIZ_PASS)setMoney(QUIZ_GAIN);}
+    else{quiz.i++;quiz.pick=null;}
+    renderQuiz();
+  };
+}
+
+/* ---------- Boutique : 3 packs ---------- */
+/* Packs : pour mettre ton propre dessin, remplis img avec un chemin ('packs/recrue.png') ou un lien.
+   Laisse '' pour garder le dessin par défaut. Les prix se changent avec price. */
+const PACKS=[
+  // n = nombre de cartes dans le pack, w = chances par rareté (en %)
+  {id:'bronze',name:'Pack Recrue',price:40*M,img:'',n:3,w:{bronze:100},desc:'3 joueurs Bronze garantis.'},
+  {id:'argent',name:'Pack Argent',price:400*M,img:'',n:3,w:{bronze:20,argent:69,or:10,elite:1},desc:'3 joueurs, surtout de l\'Argent, avec une chance d\'Or et une toute petite chance d\'Élite sur chaque carte.'},
+  {id:'psg',name:'Pack PSG',price:800*M,img:'',n:9,w:{bronze:60,argent:34,or:5,elite:1},desc:'Le pack classique du club : 9 joueurs, avec une chance d\'Élite sur chaque carte.'}
+];
+function drawCard(w){
+  const total=Object.values(w).reduce((a,b)=>a+b,0);
+  let r=Math.random()*total,rar=Object.keys(w)[0];
+  for(const k in w){if(r<w[k]){rar=k;break;}r-=w[k];}
+  return rand(OBTAINABLE.filter(p=>p.rar===rar));
+}
+function packHTML(k){
+  if(k.img)return `<img class="pack-img" src="${esc(k.img)}" alt="${esc(k.name)}">`;
+  return `<div class="pack ${k.id}"><div class="pk-logo">PSG</div><div class="pk-star">★</div><div class="pk-name">${esc(k.name)}</div><div class="pk-foot">${k.n} JOUEUR${k.n>1?'S':''}</div></div>`;
+}
+let opening=null;
+function renderShop(){
+  const stage=opening?`<div class="panel">
+      <h2 style="font-size:1.6rem">Ouverture : ${esc(opening.pack.name)}</h2>
+      <p class="note">Clique sur chaque carte pour la révéler.</p>
+      <div class="grid">${opening.cards.map((c,i)=>c.revealed
+        ?cardHTML(c.p,{cls:'pop glow-'+c.p.rar,badge:c.isNew?'NOUVEAU':'DOUBLON'})
+        :`<div class="card-back" data-r="${i}" role="button" tabindex="0" aria-label="Révéler la carte ${i+1}"><span>?</span></div>`).join('')}</div>
+      <div class="row" style="margin-top:16px">
+        ${opening.cards.some(c=>!c.revealed)?'<button class="btn alt" id="revealAll">Tout révéler</button>':''}
+        <button class="btn" id="closePack">${opening.cards.some(c=>!c.revealed)?'Passer':'Fermer'}</button>
+      </div></div>`:'';
+  $('#main').innerHTML=`<h2>Boutique</h2>
+    <p class="sub">Ouvre des packs pour recruter des joueurs de l'effectif actuel.</p>
+    ${stage}
+    <div class="packs">${PACKS.map(k=>`<div class="offer">
+      ${packHTML(k)}
+      <h3>${esc(k.name)}</h3>
+      <p class="note">${esc(k.desc)}</p>
+      <div class="chips">${Object.keys(k.w).map(r=>`<span>${RAR_LABEL[r]} ${k.w[r]} %</span>`).join('')}</div>
+      <button class="btn" data-pack="${k.id}" data-price="${k.price}" ${S.money<k.price?'disabled':''}>Ouvrir · ${eur(k.price)}</button>
+      ${S.money<k.price?`<span class="note">Il te manque ${eur(k.price-S.money)}.</span>`:''}
+    </div>`).join('')}</div>`;
+  document.querySelectorAll('[data-pack]').forEach(b=>b.onclick=()=>{
+    const k=PACKS.find(x=>x.id===b.dataset.pack);
+    if(S.money<k.price)return;
+    S.money-=k.price;
+    const cards=Array.from({length:k.n},()=>{
+      const p=drawCard(k.w);
+      const isNew=!(S.owned[p.id]>0);
+      S.owned[p.id]=(S.owned[p.id]||0)+1;
+      return {p,isNew,revealed:false};
+    });
+    opening={pack:k,cards};
+    save();renderShop();renderHeader();
+  });
+  document.querySelectorAll('[data-r]').forEach(c=>{
+    const go=()=>{opening.cards[+c.dataset.r].revealed=true;renderShop();};
+    c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter')go();};
+  });
+  const ra=$('#revealAll');if(ra)ra.onclick=()=>{opening.cards.forEach(c=>c.revealed=true);renderShop();};
+  const cp=$('#closePack');if(cp)cp.onclick=()=>{opening=null;renderShop();};
+}
+
+/* ---------- Vente rapide des doublons ---------- */
+const SELL={bronze:12,argent:30,or:70,elite:150};
+const RARE=['or','elite']; // demande confirmation avant de vendre
+const SELL_RATE=0.5; // les prix de vente sont multipliés par ce nombre (les doublons raccourcissaient trop la progression)
+
+/* Prix de vente de chaque joueur, EN MILLIONS d'€ (70 = 70 M €) : modifie les nombres à ta guise.
+   (Si tu supprimes une ligne, le joueur prend le prix de sa rareté ci-dessus.) */
+const SELL_PLAYERS={
+  'Achraf Hakimi':100,
+  'Marquinhos':85,
+  'Willian Pacho':95,
+  'Illia Zabarnyi':50,
+  'Lucas Beraldo':30,
+  'David Boly':10,
+  'Axel Koukaba':12,
+  'Lucas Hernández':40,
+  'Lucas Digne':28,
+  'Nuno Mendes':88,
+  'Vitinha':150,
+  'João Neves':85,
+  'Fabián Ruiz':80,
+  'Warren Zaïre-Emery':70,
+  'Senny Mayulu':50,
+  'Dro Fernández':30,
+  'Adam Mouak':12,
+  'Maghnes Akliouche':65,
+  'Quentin Ndjantou':30,
+  'Ousmane Dembélé':70,
+  'Désiré Doué':70,
+  'Khvicha Kvaratskhelia':99,
+  'Ferran Torres':80,
+  'Mika Godts':65
+};
+const sellPrice=p=>Math.round((SELL_PLAYERS[p.name]??SELL[p.rar])*SELL_RATE);
+// Doublons vendables : on garde toujours 1 exemplaire (ou autant que de places occupées sur le terrain)
+const dupes=id=>Math.max(0,(S.owned[id]||0)-Math.max(1,usedCount(id)));
+function sellList(list){
+  const count=list.reduce((a,[,n])=>a+n,0);
+  const total=list.reduce((a,[id,n])=>a+n*sellPrice(P[id]),0);
+  if(!count)return;
+  if(list.some(([id])=>RARE.includes(P[id].rar))&&!confirm(`Vendre ${count} doublon(s) pour ${eur(total)} ?`))return;
+  list.forEach(([id,n])=>{S.owned[id]-=n;});
+  S.money+=total;save();
+  toast(`+${eur(total)} · ${count} doublon${count>1?'s':''} vendu${count>1?'s':''}`);
+  render();
+}
+function renderSell(){
+  const ids=Object.keys(S.owned).map(Number).filter(id=>dupes(id)>0).sort((a,b)=>P[b].ovr-P[a].ovr);
+  const all=ids.map(id=>[id,dupes(id)]);
+  const totalAll=all.reduce((a,[id,n])=>a+n*sellPrice(P[id]),0);
+  const byRar=Object.keys(RAR_LABEL).map(r=>{
+    const l=all.filter(([id])=>P[id].rar===r);
+    return {r,l,n:l.reduce((a,[,n])=>a+n,0),t:l.reduce((a,[id,n])=>a+n*sellPrice(P[id]),0)};
+  }).filter(x=>x.n>0);
+  $('#main').innerHTML=`<h2>Vente rapide</h2>
+    <p class="sub">Revends tes doublons contre des €. Tu gardes toujours un exemplaire de chaque joueur, et les cartes placées sur ton terrain ne sont jamais vendues.</p>
+    ${ids.length?`<div class="panel">
+      <div class="row"><button class="btn" id="sellAll">Tout vendre · +${eur(totalAll)}</button></div>
+      <div class="sellbar">${byRar.map(x=>`<button class="btn alt sm" data-rar="${x.r}">${RAR_LABEL[x.r]} (${x.n}) · +${eur(x.t)}</button>`).join('')}</div>
+      <div class="grid">${ids.map(id=>{const d=dupes(id),v=sellPrice(P[id]);return `<div class="sellitem">
+        ${cardHTML(P[id],{qty:d})}
+        <p class="note">${d} doublon${d>1?'s':''} · ${eur(v)} pièce</p>
+        <div class="row" style="justify-content:center;gap:6px">
+          <button class="btn sm" data-sell="${id}:1">Vendre 1</button>
+          ${d>1?`<button class="btn alt sm" data-sell="${id}:${d}">Tout (${d})</button>`:''}
+        </div></div>`;}).join('')}</div>
+    </div>`:`<div class="panel"><p class="note">Aucun doublon à vendre pour l'instant. Ouvre des packs : les cartes en double apparaîtront ici.</p></div>`}`;
+  const sa=$('#sellAll');if(sa)sa.onclick=()=>sellList(all);
+  document.querySelectorAll('[data-rar]').forEach(b=>b.onclick=()=>sellList(byRar.find(x=>x.r===b.dataset.rar).l));
+  document.querySelectorAll('[data-sell]').forEach(b=>b.onclick=()=>{const [id,n]=b.dataset.sell.split(':').map(Number);sellList([[id,n]]);});
+}
+
+/* ---------- Index : toutes les cartes du jeu (découvertes ou non) ---------- */
+const IDX_GROUPS=[['DEF','Défenseurs'],['MIL','Milieux'],['ATT','Attaquants']];
+function renderIndex(){
+  const have=P.filter(p=>S.owned[p.id]>0).length;
+  $('#main').innerHTML=`<h2>Index</h2>
+    <p class="sub">Toutes les cartes du jeu. Celles que tu n'as pas encore sont cachées. Découvertes : <b>${have} / ${P.length}</b></p>
+    <div class="meter"><i style="width:${have/P.length*100}%"></i></div>
+    ${IDX_GROUPS.map(([g,label])=>{
+      const list=P.filter(p=>GROUP[p.pos]===g).sort((a,b)=>b.ovr-a.ovr);
+      const n=list.filter(p=>S.owned[p.id]>0).length;
+      return `<div class="panel"><h2 style="font-size:1.5rem">${label} (${n} / ${list.length})</h2>
+        <div class="grid">${list.map(p=>S.owned[p.id]>0
+          ?cardHTML(p,{qty:S.owned[p.id]})
+          :`<div class="card-lock" title="Pas encore découvert"><span>?</span><small>${p.pos} · ${RAR_LABEL[p.rar]}</small></div>`).join('')}</div></div>`;
+    }).join('')}`;
+}
+
+/* ---------- Duel Fatal (4-3-3 : 5 manches, un poste tiré à chaque manche, n'importe quel joueur peut jouer) ---------- */
+let duel=null;
+const DUEL_ROUNDS=5;
+const DUEL_POSTS=['ATT','MIL','DEF'];
+const DUEL_STAT={ATT:'att',MIL:'mil',DEF:'def'};
+const DUEL_LABEL={ATT:'Attaquant',MIL:'Milieu',DEF:'Défenseur'};
+const DUEL_NEED={ATT:3,MIL:3,DEF:4}; // équipe du rival : 4-3-3
+const RIVAL_SMART=0.7; // chance que le rival joue son meilleur joueur disponible sur la stat tirée (sinon il joue au hasard)
+const teamFull=()=>S.team.every(id=>id!==null);
+const sample=(a,n)=>shuffle(a).slice(0,n);
+function renderDuel(){
+  const ready=teamFull();
+  const inGame=duel&&!duel.over;
+  let body=`<h2>Duel Fatal</h2>
+    <p class="sub">5 manches. À chaque manche, un poste est tiré au sort : défenseur, milieu ou attaquant. Tu choisis n'importe lequel de tes joueurs, même s'il n'est pas de ce poste : seule compte sa stat du poste tiré (DEF, MIL ou ATT). Le rival fait de même. Un joueur ne peut servir qu'une fois par duel. Tu mises, le rival mise autant, le vainqueur prend toute la cagnotte.</p>`;
+  if(!inGame){
+    body+=`<div class="panel">`;
+    if(!ready){
+      body+=`<p>Il te faut tes 10 joueurs sur le terrain (3 attaquants, 3 milieux, 4 défenseurs). Va dans <b>Ma base</b> pour composer ton équipe.</p>`;
+    }else{
+      body+=`<div class="row">
+        <label for="bet">Ta mise</label>
+        <input type="number" id="bet" min="1" max="${Math.max(S.money,1)}" value="${Math.min(10,Math.max(S.money,1))}">
+        <button class="btn alt" data-q="0.25">¼</button><button class="btn alt" data-q="0.5">½</button><button class="btn alt" data-q="1">Tout</button>
+        <button class="btn" id="fight" ${S.money<1?'disabled':''}>Lancer le duel</button></div>
+        <p class="note" style="margin-top:8px">Cagnotte en jeu : ta mise + celle du rival. En cas d'égalité, chacun récupère sa mise. La mise est prélevée dès le début du duel.</p>`;
+    }
+    body+=`</div>`;
+  }
+  body+=`<div id="arena"></div>`;
+  $('#main').innerHTML=body;
+  document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{$('#bet').value=Math.max(1,Math.floor(S.money*+b.dataset.q));});
+  const f=$('#fight');if(f)f.onclick=startDuel;
+  drawArena();
+}
+function startDuel(){
+  const bet=Math.floor(+$('#bet').value);
+  if(!(bet>=1)||bet>S.money){toast('Mise invalide : entre 1 € et ton solde.');return;}
+  const mine=S.team.map(id=>P[id]);
+  const avg=mine.reduce((a,p)=>a+p.ovr,0)/mine.length;
+  // Équipe du rival : 3 attaquants, 3 milieux, 4 défenseurs de niveau proche du tien
+  const opp=[];
+  ['ATT','MIL','DEF'].forEach(g=>{
+    const all=OBTAINABLE.filter(p=>GROUP[p.pos]===g);
+    let pick=sample(all.filter(p=>Math.abs(p.ovr-avg)<=6),DUEL_NEED[g]);
+    if(pick.length<DUEL_NEED[g])pick=pick.concat(sample(all.filter(p=>!pick.includes(p)),DUEL_NEED[g]-pick.length));
+    while(pick.length<DUEL_NEED[g])pick.push(rand(all));
+    opp.push(...pick);
+  });
+  // 5 postes tirés au sort (un même poste peut sortir plusieurs fois)
+  const posts=Array.from({length:DUEL_ROUNDS},()=>rand(DUEL_POSTS));
+  // La mise est prélevée tout de suite (pas de triche en rechargeant la page)
+  S.money-=bet;save();renderHeader();
+  duel={mine,opp,posts,bet,round:0,rounds:[],usedMine:new Set(),usedOpp:new Set(),score:0,oscore:0,phase:'pick',over:false,out:null};
+  renderDuel();
+}
+function pickDuel(id){
+  const d=duel;if(!d||d.phase!=='pick'||d.usedMine.has(id))return;
+  const post=d.posts[d.round],k=DUEL_STAT[post];
+  const me=P[id];
+  // Le rival choisit parmi ses joueurs encore disponibles
+  const cand=d.opp.filter(p=>!d.usedOpp.has(p.id));
+  const best=cand.reduce((m,p)=>p[k]>m[k]?p:m,cand[0]);
+  const rv=Math.random()<RIVAL_SMART?best:rand(cand);
+  d.usedMine.add(id);d.usedOpp.add(rv.id);
+  const a=me[k],b=rv[k];
+  const w=a>b?1:a<b?-1:0;
+  if(w===1)d.score++;else if(w===-1)d.oscore++;
+  d.rounds.push({post,k:k.toUpperCase(),me,rv,a,b,w});
+  d.phase='result';
+  renderDuel();
+}
+function nextDuel(){
+  const d=duel;if(!d)return;
+  d.round++;
+  if(d.round>=DUEL_ROUNDS){
+    d.over=true;d.phase='end';
+    d.out=d.score>d.oscore?'win':d.score<d.oscore?'lose':'draw';
+    if(d.out==='win')S.money+=2*d.bet;else if(d.out==='draw')S.money+=d.bet;
+    save();renderHeader();
+  }else d.phase='pick';
+  renderDuel();
+}
+function drawArena(){
+  const d=duel,a=$('#arena');if(!a||!d)return;
+  let html='';
+  d.rounds.forEach((r,i)=>{
+    html+=`<div class="vs">
+      <div class="${r.w===1?'win':''}">${cardHTML(r.me,{sm:true})}</div>
+      <div class="mid">Manche ${i+1}<br>${DUEL_LABEL[r.post]} · <b>${r.k}</b><br>${r.a} – ${r.b}<br>${r.w===1?'Point pour toi':r.w===-1?'Point pour le rival':'Égalité'}</div>
+      <div class="${r.w===-1?'win':''}">${cardHTML(r.rv,{sm:true})}</div></div>`;
+  });
+  if(!d.over){
+    if(d.phase==='pick'){
+      const post=d.posts[d.round],k=DUEL_STAT[post];
+      const choices=d.mine.filter(p=>!d.usedMine.has(p.id)).sort((x,y)=>y[k]-x[k]);
+      html+=`<div class="panel">
+        <h2 style="font-size:1.5rem">Manche ${d.round+1} / ${DUEL_ROUNDS} · Score ${d.score} – ${d.oscore}</h2>
+        <p>Poste tiré : <b>${DUEL_LABEL[post]}</b>. Choisis n'importe quel joueur : c'est sa stat <b>${k.toUpperCase()}</b> qui compte (classés de la plus haute à la plus basse).</p>
+        <div class="grid">${choices.map(p=>cardHTML(p,{cls:'btn-card',attrs:`data-duel="${p.id}" tabindex="0" role="button"`})).join('')}</div></div>`;
+    }else{
+      html+=`<div class="panel"><p style="margin-bottom:12px">Score : ${d.score} – ${d.oscore}</p><button class="btn" id="nextD">${d.round===DUEL_ROUNDS-1?'Voir le résultat':'Manche suivante'}</button></div>`;
+    }
+  }else{
+    const msg={win:`Victoire ${d.score}–${d.oscore} ! Tu gagnes ${eur(d.bet)}.`,lose:`Défaite ${d.score}–${d.oscore}. Tu perds ${eur(d.bet)}.`,draw:`Égalité ${d.score}–${d.oscore}. Tu gardes ta mise.`}[d.out];
+    html+=`<div class="panel"><p class="result">${msg}</p><div style="margin-top:12px"><button class="btn" id="rematch">Nouveau duel</button></div></div>`;
+  }
+  a.innerHTML=html;
+  document.querySelectorAll('[data-duel]').forEach(c=>{c.onclick=()=>pickDuel(+c.dataset.duel);c.onkeydown=e=>{if(e.key==='Enter')c.click();};});
+  const n=$('#nextD');if(n)n.onclick=nextDuel;
+  const rm=$('#rematch');if(rm)rm.onclick=()=>{duel=null;renderDuel();};
+}
+
+/* ---------- Accueil : pseudo puis pack de bienvenue ---------- */
+function showNameStep(){
+  $('#gateBox').innerHTML=`<h2>Bienvenue au Parc</h2>
+    <p class="sub">Choisis ton pseudo : il s'affichera sur le panneau de ta base.</p>
+    <form id="nameForm" class="row">
+      <input type="text" id="nameInput" maxlength="16" placeholder="Ton pseudo" autocomplete="off" required>
+      <button class="btn" type="submit">Continuer</button>
+    </form>`;
+  $('#nameGate').hidden=false;
+  $('#nameInput').focus();
+  $('#nameForm').onsubmit=e=>{
+    e.preventDefault();
+    const v=$('#nameInput').value.trim();
+    if(!v)return;
+    S.name=v;save();
+    showGiftStep();
+  };
+}
+function showGiftStep(){
+  const cards=S.gift?[]:giveStarter();
+  $('#gateBox').innerHTML=`<h2>Pack de départ offert</h2>
+    <p class="sub">Le club t'offre 8 joueurs tirés au hasard pour démarrer. Ceux qui ont une place libre sont déjà sur ton terrain, et ce sont eux qui te rapportent des €. Les autres vont dans ta collection. Gagne de l'argent pour recruter mieux !</p>
+    <div class="grid" style="justify-content:center">${cards.map((c,i)=>cardHTML(c,{sm:true,cls:'reveal',attrs:`style="animation-delay:${i*.12}s"`})).join('')}</div>
+    <p style="margin-top:16px"><button class="btn" id="startBtn">Entrer dans ma base</button></p>`;
+  $('#startBtn').onclick=()=>{$('#nameGate').hidden=true;render();};
+  $('#nameGate').hidden=false;
+}
+$('#resetBtn').onclick=resetGame;
+tick(); // crédite les gains accumulés pendant l'absence
+if(!S.name){showNameStep();}
+else if(!S.gift){showGiftStep();}
+render();
+</script>
+</body>
+</html>
